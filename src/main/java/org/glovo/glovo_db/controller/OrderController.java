@@ -39,7 +39,7 @@ public class OrderController {
         orderService.deleteOrder(id);
     }
 
-    @PostMapping("/{id}/addProduct")
+    @PatchMapping("/{id}/addProduct")
     public void addProductToOrder(@PathVariable Long id, @RequestBody Product product) {
         orderService.addProductToOrder(id, product);
     }
