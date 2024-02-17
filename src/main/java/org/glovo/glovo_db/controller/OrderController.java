@@ -2,6 +2,7 @@ package org.glovo.glovo_db.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.glovo.glovo_db.model.Order;
+import org.glovo.glovo_db.model.OrderUpdateRequest;
 import org.glovo.glovo_db.model.Product;
 import org.glovo.glovo_db.service.OrderService;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +30,8 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
-    public void updateOrder(@PathVariable Long id, @RequestBody Order updatedOrder) {
-        updatedOrder.setId(id);
-        orderService.updateOrder(updatedOrder);
+    public void updateOrder(@PathVariable Long id, @RequestBody OrderUpdateRequest updateRequest) {
+        orderService.updateOrder(id, updateRequest);
     }
 
     @DeleteMapping("/{id}")

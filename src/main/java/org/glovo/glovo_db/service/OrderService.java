@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.glovo.glovo_db.exception.OrderNotFoundException;
 import org.glovo.glovo_db.exception.ProductNotFoundException;
 import org.glovo.glovo_db.model.Order;
+import org.glovo.glovo_db.model.OrderUpdateRequest;
 import org.glovo.glovo_db.model.Product;
 import org.glovo.glovo_db.repository.OrderRepository;
 import org.springframework.stereotype.Service;
@@ -33,14 +34,14 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public void updateOrder(Order updatedOrder) {
-        Order existingOrder = getOrderById(updatedOrder.getId());
+    public void updateOrder(Long id, OrderUpdateRequest orderUpdateRequest) {
+        Order existingOrder = getOrderById(id);
 
-        for (Product existingProduct : existingOrder.getProducts()) {
-            productService.updateProductQuantity(existingProduct.getId(), existingProduct.getQuantity());
-        }
-            existingOrder.setModificationDateTime(new Date());
-            recalculateOrderTotal(existingOrder);
+        existingOrder.setModificationDateTime(new Date());
+        existingOrder.setTotalAmount(orderUpdateRequest.getTotalAmount());
+        existingOrder.setMobile(orderUpdateRequest.getMobile());
+
+        recalculateOrderTotal(existingOrder);
     }
 
     public void deleteOrder(Long id) {
