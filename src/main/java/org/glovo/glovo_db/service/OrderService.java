@@ -73,7 +73,7 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    private void recalculateOrderTotal(Order order) {
+    public void recalculateOrderTotal(Order order) {
         double totalAmount = order.getProducts().stream()
                 .mapToDouble(product -> product.getPrice() * product.getQuantity())
                 .sum();

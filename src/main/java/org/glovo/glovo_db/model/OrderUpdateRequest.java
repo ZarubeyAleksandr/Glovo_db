@@ -1,13 +1,16 @@
 package org.glovo.glovo_db.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.jetbrains.annotations.NotNull;
+import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderUpdateRequest {
     private Date modificationDateTime;
     private double totalAmount;
-    @NotNull
     private String mobile;
+
 }
