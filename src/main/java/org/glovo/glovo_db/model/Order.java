@@ -2,11 +2,15 @@ package org.glovo.glovo_db.model;
 
 import jakarta.persistence.*;
 import java.util.*;
-import lombok.Data;
+
+import lombok.*;
 
 @Entity
 @Table(name = "orders")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

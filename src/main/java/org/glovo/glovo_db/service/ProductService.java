@@ -20,9 +20,4 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public void updateProductQuantity(Long id, int quantity) {
-        Product product = getProductById(id);
-        product.setQuantity(quantity);
-        productRepository.save(product);
-    }
 }
